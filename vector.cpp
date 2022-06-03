@@ -8,6 +8,7 @@ Vector::Vector(const Value* rawArray, const size_t size, float coef)
 	_multiplicativeCoef = coef;
 	_size = size;
 	_capacity = _size;
+	
 	if (_capacity == 0)
 	{
 		return;
@@ -28,6 +29,7 @@ Vector::Vector(const Vector& other)
 	_capacity = other.size();
 	_multiplicativeCoef = other._multiplicativeCoef;
 	_data = new Value[_capacity];
+	
 	for (int i = 0; i < _capacity; i++) 
 	{
 		_data[i] = other._data[i];
@@ -40,14 +42,17 @@ Vector& Vector::operator=(const Vector& other)
 	{
 		return *this;
 	}
+	
 	_size = other.size();
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
 	_data = new Value[_capacity];
+	
 	for (int i = 0; i < _capacity; i++) 
 	{
 		_data[i] = other._data[i];
 	}
+	
 	return *this;
 };
 
@@ -57,6 +62,7 @@ Vector::Vector(Vector&& other) noexcept
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
 	_data = other._data;
+	
 	other._data = nullptr;
 	other._size = 0;
 	other._capacity = 0;
@@ -69,20 +75,24 @@ Vector& Vector::operator=(Vector&& other) noexcept
 	{
 		return *this;
 	}
+	
 	_size = other.size();
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
 	_data = other._data;
+	
 	other._data = nullptr;
 	other._size = 0;
 	other._capacity = 0;
 	other._multiplicativeCoef = 2.0f;
+	
 	return *this;
 };
 
 void Vector::pushBack(const Value& value)
 {
 	_size = _size + 1;
+	
 	if (_size > _capacity)
 	{
 		_capacity = _size * _multiplicativeCoef;
@@ -104,6 +114,7 @@ void Vector::pushBack(const Value& value)
 void Vector::pushFront(const Value& value)
 {
 	_size = _size + 1;
+	
 	if (_size > _capacity)
 	{
 		_capacity = _size * _multiplicativeCoef;
@@ -120,6 +131,7 @@ void Vector::pushFront(const Value& value)
 		}
 		delete[] tempArray;
 	}
+	
 	for (int i = _size; i > 0; i--) 
 	{
 		_data[i] = _data[i - 1];
@@ -137,8 +149,10 @@ void Vector::insert(const Value& value, size_t pos)
 			tempArray[i] = _data[i];
 		}
 		delete[] _data;
+		
 		_capacity = _capacity * _multiplicativeCoef;
 		_data = new Value[_capacity];
+		
 		for (int j = 0; j < _size; j++) 
 		{
 			_data[j] = tempArray[j];
@@ -150,6 +164,7 @@ void Vector::insert(const Value& value, size_t pos)
 	{
 		_data[l] = _data[l - 1];
 	}
+	
 	_data[pos - 1] = value;
 	_size = _size + 1;
 };
