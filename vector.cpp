@@ -14,6 +14,7 @@ Vector::Vector(const Value* rawArray, const size_t size, float coef)
 	else
 	{
 		_data = new Value[_capacity];
+		
 		for (auto i = 0; i < _capacity; i++)
 		{
 			_data[i] = rawArray[i];
