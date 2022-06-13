@@ -3,7 +3,8 @@
 #include <cstddef>
 
 
-Vector::Vector(const Value* rawArray, const size_t size, float coef) : _multiplicativeCoef(coef), _size(size), _capacity(_size)
+Vector::Vector(const Value* rawArray, const size_t size, float coef) 
+	: _multiplicativeCoef(coef), _size(size), _capacity(_size)
 {
 	if (_capacity == 0)
 	{
