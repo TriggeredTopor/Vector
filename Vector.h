@@ -46,7 +46,7 @@ public:
     size_t capacity() const;
 
 
-    double loadFactor() const;
+    size_t loadFactor() const;
 
 
     Value& operator[](size_t idx);
@@ -60,7 +60,9 @@ public:
 
 
     void shrinkToFit();
-	
+
+	void reallocate();
+
     class Iterator
     {
         Value* _ptr;
