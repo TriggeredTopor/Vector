@@ -77,8 +77,6 @@ Vector& Vector::operator=(Vector&& other) noexcept
 		return *this;
 	}
 
-	delete[] _data;
-	
 	_size = other.size();
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
