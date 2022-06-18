@@ -280,10 +280,11 @@ size_t Vector::capacity() const
 	return(_capacity);
 }
 
-size_t Vector::loadFactor() const
+long long Vector::loadFactor() const
 {
 	return (_size / _capacity);
 }
+
 Value& Vector::operator[](size_t idx)
 {
 	return(_data[idx]);
