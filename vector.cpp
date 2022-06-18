@@ -42,7 +42,7 @@ Vector& Vector::operator=(const Vector& other)
 		return *this;
 	}
 	
-	delete[] _data
+	delete[] _data;
 		
 	_size = other.size();
 	_capacity = other.capacity();
@@ -77,6 +77,8 @@ Vector& Vector::operator=(Vector&& other) noexcept
 		return *this;
 	}
 
+	delete[] _data;
+	
 	_size = other.size();
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
@@ -188,7 +190,14 @@ void Vector::insert(const Value* values, size_t size, size_t pos)
 
 void Vector::insert(const Vector& vector, size_t pos)
 {
-	insert(vector.values(),vector.size(),pos);
+	Value* tempArray = new Value[vector.size()];
+	
+	for (int h = 0; h < vector.size(); h++)
+	{
+    	tempArray[h] = vector._data[h];
+  	}
+	
+	insert(tempArray,vector.size(),pos);
 }
 
 void Vector::popBack()
@@ -271,7 +280,7 @@ size_t Vector::capacity() const
 	return(_capacity);
 }
 
-long long Vector::loadFactor() const
+size_t Vector::loadFactor() const
 {
 	return (_size / _capacity);
 }
