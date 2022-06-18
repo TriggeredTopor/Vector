@@ -41,7 +41,9 @@ Vector& Vector::operator=(const Vector& other)
 	{
 		return *this;
 	}
-
+	
+	delete[] _data
+		
 	_size = other.size();
 	_capacity = other.capacity();
 	_multiplicativeCoef = other._multiplicativeCoef;
@@ -186,30 +188,7 @@ void Vector::insert(const Value* values, size_t size, size_t pos)
 
 void Vector::insert(const Vector& vector, size_t pos)
 {
-	size_t shift = vector.size();
-	size_t tempSize = vector.size() + _size;
-	_multiplicativeCoef = vector._multiplicativeCoef;
-
-	while (tempSize >= _capacity)
-	{
-		reallocate();
-	}
-
-	_size = _size + vector.size();
-
-	while (shift != 0)
-	{
-		for (int k = _size - 1; k > pos - 1; k--)
-		{
-			_data[k] = _data[k - 1];
-		}
-		shift = shift - 1;
-	}
-
-	for (int h = 0; h < vector.size(); h++)
-	{
-		_data[pos - 1 + h] = vector._data[h];
-	}
+	insert(vector.values(),vector.size(),pos);
 }
 
 void Vector::popBack()
@@ -292,7 +271,7 @@ size_t Vector::capacity() const
 	return(_capacity);
 }
 
-double Vector::loadFactor() const
+long long Vector::loadFactor() const
 {
 	return (_size / _capacity);
 }
@@ -319,7 +298,7 @@ long long Vector::find(const Value& value) const
 		found = found + 1;
 	}
 
-	return(found);
+	return(-1);
 }
 
 
@@ -362,14 +341,7 @@ void Vector::shrinkToFit()
 	}
 
 	delete[] _data;
-	_data = new Value[_capacity];
-
-	for (int j = 0; j < _capacity; j++)
-	{
-		_data[j] = tempArray[j];
-	}
-
-	delete[] tempArray;
+	_data = tempArray;
 }
 
 Vector::Iterator::Iterator(Value* ptr) : _ptr(ptr)
