@@ -46,7 +46,7 @@ public:
     size_t capacity() const;
 
 
-    long long loadFactor() const;
+    size_t loadFactor() const;
 
 
     Value& operator[](size_t idx);
