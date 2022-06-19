@@ -94,4 +94,3 @@ private:
     size_t _capacity = 0;
     float _multiplicativeCoef = 2.0f;
 };
-ghjvghv
