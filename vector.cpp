@@ -273,7 +273,7 @@ size_t Vector::capacity() const
 	return(_capacity);
 }
 
-long long Vector::loadFactor() const
+size_t Vector::loadFactor() const
 {
 	return (_size / _capacity);
 }
