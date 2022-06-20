@@ -345,8 +345,6 @@ void Vector::shrinkToFit()
 
 	delete[] _data;
 	_data = tempArray;
-	
-	delete[] tempArray;
 }
 
 Vector::Iterator::Iterator(Value* ptr) : _ptr(ptr)
